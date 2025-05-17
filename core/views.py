@@ -6,9 +6,22 @@ from .forms import ContactoForm
 def home(request):
     servicios = Servicio.objects.all()
     calderas = Caldera.objects.all()
+    
+    if request.method == 'POST':
+        form = ContactoForm(request.POST)
+        if form.is_valid():
+            form.save()
+            messages.success(request, '¡Gracias por contactarnos! Nos pondremos en contacto contigo pronto.')
+            return redirect('home#contacto')
+    else:
+        form = ContactoForm()
+    
     return render(request, 'core/home.html', {
         'servicios': servicios,
-        'calderas': calderas
+        'calderas': calderas,
+        'form': form,
+        'testimonios': [],  # Lista vacía temporalmente
+        'proyectos': []     # Lista vacía temporalmente
     })
 
 def servicios(request):

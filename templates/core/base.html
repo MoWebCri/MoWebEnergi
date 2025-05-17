@@ -4,56 +4,96 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}Energías Brunetti{% endblock %}</title>
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'blue': {
+                            900: '#0a2342',
+                            700: '#1a4b8c',
+                            500: '#2a73d6',
+                        },
+                        'green': {
+                            400: '#b6ff6e',
+                            500: '#9eff4d',
+                        },
+                    },
+                    animation: {
+                        'fade-in-down': 'fade-in-down 0.5s ease-out',
+                        'bounce': 'bounce 1s infinite',
+                    },
+                    keyframes: {
+                        'fade-in-down': {
+                            '0%': {
+                                opacity: '0',
+                                transform: 'translateY(-10px)'
+                            },
+                            '100%': {
+                                opacity: '1',
+                                transform: 'translateY(0)'
+                            },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="/static/css/style.css">
+    <style>
+        .glass-effect {
+            backdrop-filter: blur(10px);
+            background-color: rgba(255, 255, 255, 0.8);
+        }
+    </style>
+    
     {% block extra_css %}{% endblock %}
 </head>
-<body>
+<body class="bg-gray-50">
     <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
-        <div class="container">
-            <a class="navbar-brand" href="{% url 'home' %}">Energías Brunetti</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url 'home' %}">Inicio</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url 'servicios' %}">Servicios</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url 'calderas' %}">Calderas</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url 'sobre_nosotros' %}">Sobre Nosotros</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url 'contacto' %}">Contacto</a>
-                    </li>
-                </ul>
+    <nav class="bg-blue-900 text-white shadow-lg fixed w-full z-50">
+        <div class="container mx-auto px-4">
+            <div class="flex justify-between items-center py-4">
+                <a href="{% url 'home' %}" class="text-2xl font-bold">Energías Brunetti</a>
+                <button class="md:hidden" id="menu-button">
+                    <i class="fas fa-bars text-2xl"></i>
+                </button>
+                <div class="hidden md:flex space-x-8" id="menu-items">
+                    <a href="{% url 'home' %}" class="hover:text-green-400 transition-colors">Inicio</a>
+                    <a href="{% url 'servicios' %}" class="hover:text-green-400 transition-colors">Servicios</a>
+                    <a href="{% url 'calderas' %}" class="hover:text-green-400 transition-colors">Calderas</a>
+                    <a href="{% url 'sobre_nosotros' %}" class="hover:text-green-400 transition-colors">Sobre Nosotros</a>
+                    <a href="{% url 'contacto' %}" class="hover:text-green-400 transition-colors">Contacto</a>
+                </div>
             </div>
         </div>
     </nav>
 
     <!-- WhatsApp Button -->
-    <a href="https://wa.me/56996952092" class="whatsapp-button" target="_blank">
-        <i class="fab fa-whatsapp"></i>
+    <a href="https://wa.me/56996952092" target="_blank" class="fixed bottom-6 right-6 z-50">
+        <div class="bg-green-400 text-blue-900 p-3 rounded-full shadow-lg hover:scale-110 transition-transform">
+            <i class="fab fa-whatsapp text-3xl"></i>
+        </div>
     </a>
 
     <!-- Main Content -->
-    <main class="container mt-5 pt-4">
+    <main class="pt-16">
         {% if messages %}
             {% for message in messages %}
-                <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
-                    {{ message }}
-                    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                <div class="container mx-auto px-4 mt-4">
+                    <div class="bg-{{ message.tags }}-100 border border-{{ message.tags }}-400 text-{{ message.tags }}-700 px-4 py-3 rounded relative" role="alert">
+                        <span class="block sm:inline">{{ message }}</span>
+                        <button class="absolute top-0 bottom-0 right-0 px-4 py-3" onclick="this.parentElement.remove()">
+                            <i class="fas fa-times"></i>
+                        </button>
+                    </div>
                 </div>
             {% endfor %}
         {% endif %}
@@ -62,39 +102,49 @@
     </main>
 
     <!-- Footer -->
-    <footer class="bg-dark text-light mt-5 py-4">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-4">
-                    <h5>Energías Brunetti</h5>
-                    <p>Expertos en calderas industriales</p>
+    <footer class="bg-blue-900 text-white py-12">
+        <div class="container mx-auto px-4">
+            <div class="grid md:grid-cols-3 gap-8">
+                <div>
+                    <h5 class="text-xl font-bold mb-4">Energías Brunetti</h5>
+                    <p class="text-gray-300">Expertos en calderas industriales</p>
                 </div>
-                <div class="col-md-4">
-                    <h5>Contacto</h5>
-                    <p>
-                        <i class="fas fa-phone"></i> +56 9 96952092<br>
-                        <i class="fas fa-envelope"></i> Info@energiasbrunetti.cl
+                <div>
+                    <h5 class="text-xl font-bold mb-4">Contacto</h5>
+                    <p class="text-gray-300">
+                        <i class="fas fa-phone mr-2"></i> +56 9 96952092<br>
+                        <i class="fas fa-envelope mr-2"></i> Info@energiasbrunetti.cl
                     </p>
                 </div>
-                <div class="col-md-4">
-                    <h5>Síguenos</h5>
-                    <div class="social-links">
-                        <a href="#" class="text-light me-2"><i class="fab fa-facebook"></i></a>
-                        <a href="#" class="text-light me-2"><i class="fab fa-instagram"></i></a>
-                        <a href="#" class="text-light"><i class="fab fa-linkedin"></i></a>
+                <div>
+                    <h5 class="text-xl font-bold mb-4">Síguenos</h5>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-300 hover:text-green-400 transition-colors">
+                            <i class="fab fa-facebook text-2xl"></i>
+                        </a>
+                        <a href="#" class="text-gray-300 hover:text-green-400 transition-colors">
+                            <i class="fab fa-instagram text-2xl"></i>
+                        </a>
+                        <a href="#" class="text-gray-300 hover:text-green-400 transition-colors">
+                            <i class="fab fa-linkedin text-2xl"></i>
+                        </a>
                     </div>
                 </div>
             </div>
-            <div class="text-center mt-3">
-                <p class="mb-0">&copy; {% now "Y" %} Energías Brunetti. Todos los derechos reservados.</p>
+            <div class="text-center mt-8 pt-8 border-t border-gray-700">
+                <p class="text-gray-300">&copy; {% now "Y" %} Energías Brunetti. Todos los derechos reservados.</p>
             </div>
         </div>
     </footer>
 
-    <!-- Bootstrap JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <!-- Custom JS -->
-    <script src="/static/js/main.js"></script>
+    <!-- JavaScript -->
+    <script>
+        // Mobile menu toggle
+        document.getElementById('menu-button').addEventListener('click', function() {
+            document.getElementById('menu-items').classList.toggle('hidden');
+        });
+    </script>
+    
     {% block extra_js %}{% endblock %}
 </body>
 </html> 

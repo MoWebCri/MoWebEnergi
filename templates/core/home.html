@@ -1,116 +1,165 @@
 {% extends 'core/base.html' %}
+{% load static %}
 
 {% block title %}Inicio - Energías Brunetti{% endblock %}
 
 {% block content %}
-<!-- Banner Principal (Hero Section) -->
-<section class="hero-section text-center py-5 bg-dark text-white">
-    <div class="container">
-        <h1 class="display-4 fade-in">Expertos en Calderas Industriales</h1>
-        <p class="lead fade-in">Soluciones energéticas eficientes para tu empresa</p>
-        <a href="{% url 'contacto' %}" class="btn btn-primary btn-lg mt-3 fade-in">Contáctanos</a>
+<!-- Hero Section -->
+<section class="relative bg-gradient-to-r from-blue-900 via-blue-700 to-blue-500 text-white py-24 px-6 flex items-center justify-center">
+    <div class="max-w-2xl text-center z-10">
+        <h1 class="text-5xl font-bold mb-4 animate-fade-in-down drop-shadow-lg">Soluciones Energéticas Inteligentes</h1>
+        <p class="mb-6 text-xl">Arriendo y mantención de calderas industriales, respaldo profesional y atención inmediata.</p>
+        <a href="https://wa.me/56996952092" target="_blank" class="inline-block bg-green-400 hover:bg-green-500 text-blue-900 font-semibold py-3 px-8 rounded-lg shadow-lg transition-all animate-bounce">
+            Cotiza por WhatsApp
+        </a>
     </div>
+    <img src="{% static 'images/hero-bg.webp' %}" alt="Banner Energía" class="absolute inset-0 w-full h-full object-cover opacity-30 pointer-events-none" />
 </section>
 
-<!-- Sección de Servicios Destacados -->
-<section class="py-5">
-    <div class="container">
-        <h2 class="text-center mb-5">Nuestros Servicios</h2>
-        <div class="row">
+<!-- Servicios Destacados -->
+<section class="bg-white py-16">
+    <div class="container mx-auto px-4">
+        <h2 class="text-3xl font-bold text-center mb-10 text-blue-900">Nuestros Servicios</h2>
+        <div class="grid md:grid-cols-3 gap-8">
             {% for servicio in servicios %}
-            <div class="col-md-4 mb-4">
-                <div class="card service-card h-100">
-                    {% if servicio.imagen %}
-                    <img src="{{ servicio.imagen.url }}" class="card-img-top" alt="{{ servicio.titulo }}">
-                    {% endif %}
-                    <div class="card-body">
-                        <h5 class="card-title">{{ servicio.titulo }}</h5>
-                        <p class="card-text">{{ servicio.descripcion }}</p>
-                        <a href="{% url 'contacto' }}" class="btn btn-outline-primary">Saber más</a>
-                    </div>
-                </div>
+            <div class="bg-white shadow-xl rounded-xl p-6 hover:scale-105 transition-transform duration-300 border-t-4 border-green-400 glass-effect">
+                {% if servicio.imagen %}
+                <img src="{{ servicio.imagen.url }}" alt="{{ servicio.titulo }}" class="w-16 h-16 mb-4 mx-auto rounded-lg">
+                {% endif %}
+                <h3 class="text-xl font-semibold mb-2 text-blue-900">{{ servicio.titulo }}</h3>
+                <p class="text-gray-700 mb-4">{{ servicio.descripcion }}</p>
+                <a href="#contacto" class="text-green-500 font-semibold hover:underline">¡Solicita más info!</a>
             </div>
             {% endfor %}
         </div>
     </div>
 </section>
 
-<!-- Sección de Calderas Destacadas -->
-<section class="py-5 bg-light">
-    <div class="container">
-        <h2 class="text-center mb-5">Nuestras Calderas</h2>
-        <div class="row">
+<!-- Calderas Destacadas -->
+<section class="bg-gray-50 py-16">
+    <div class="container mx-auto px-4">
+        <h2 class="text-3xl font-bold text-center mb-10 text-blue-900">Nuestras Calderas</h2>
+        <div class="grid md:grid-cols-3 gap-8">
             {% for caldera in calderas|slice:":3" %}
-            <div class="col-md-4 mb-4">
-                <div class="card caldera-card h-100">
-                    {% if caldera.imagen %}
-                    <img src="{{ caldera.imagen.url }}" class="card-img-top" alt="{{ caldera.nombre }}">
-                    {% endif %}
-                    <div class="card-body">
-                        <h5 class="card-title">{{ caldera.nombre }}</h5>
-                        <p class="card-text">
-                            <strong>Potencia:</strong> {{ caldera.potencia }}<br>
-                            <strong>Tipo:</strong> {{ caldera.tipo }}
-                        </p>
+            <div class="bg-white shadow-xl rounded-xl overflow-hidden hover:scale-105 transition-transform duration-300">
+                {% if caldera.imagen %}
+                <img src="{{ caldera.imagen.url }}" alt="{{ caldera.nombre }}" class="w-full h-48 object-cover">
+                {% endif %}
+                <div class="p-6">
+                    <h3 class="text-xl font-semibold mb-2 text-blue-900">{{ caldera.nombre }}</h3>
+                    <div class="text-gray-700 mb-4">
+                        <p><strong>Potencia:</strong> {{ caldera.potencia }}</p>
+                        <p><strong>Tipo:</strong> {{ caldera.tipo }}</p>
                         {% if caldera.descripcion %}
-                        <p class="card-text">{{ caldera.descripcion }}</p>
+                        <p class="mt-2">{{ caldera.descripcion }}</p>
                         {% endif %}
                     </div>
+                    <a href="#contacto" class="inline-block bg-blue-900 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors">Solicitar Información</a>
                 </div>
             </div>
             {% endfor %}
         </div>
-        <div class="text-center mt-4">
-            <a href="{% url 'calderas' }}" class="btn btn-outline-primary">Ver todas las calderas</a>
+        <div class="text-center mt-8">
+            <a href="{% url 'calderas' %}" class="inline-block bg-green-400 text-blue-900 px-6 py-3 rounded-lg font-semibold hover:bg-green-500 transition-colors">
+                Ver todas las calderas
+            </a>
         </div>
     </div>
 </section>
 
-<!-- Sección de Reseñas (Comentarios de Clientes) -->
-<section class="py-5">
-    <div class="container">
-        <h2 class="text-center mb-5">Lo que dicen nuestros clientes</h2>
-        <div class="row">
-            <div class="col-md-4 mb-4">
-                <div class="card h-100">
-                    <div class="card-body text-center">
-                        <i class="fas fa-quote-left fa-2x text-primary mb-3"></i>
-                        <p class="card-text">"Excelente servicio y atención. Recomendados."</p>
-                        <h5 class="card-title">Cliente 1</h5>
-                    </div>
+<!-- Testimonios -->
+<section class="bg-white py-16">
+    <div class="container mx-auto px-4">
+        <h2 class="text-3xl font-bold text-center mb-8 text-blue-900">Lo que dicen nuestros clientes</h2>
+        <div class="grid md:grid-cols-2 gap-8">
+            {% for testimonio in testimonios %}
+            <div class="bg-gray-50 rounded-lg shadow-md p-6 flex items-center gap-4">
+                {% if testimonio.imagen_cliente %}
+                <img src="{{ testimonio.imagen_cliente.url }}" alt="{{ testimonio.cliente }}" class="w-16 h-16 rounded-full border-2 border-green-400">
+                {% endif %}
+                <div>
+                    <p class="italic text-gray-700 mb-2">"{{ testimonio.comentario }}"</p>
+                    <p class="font-bold text-blue-900">{{ testimonio.cliente }}</p>
+                    {% if testimonio.empresa %}
+                    <p class="text-gray-600 text-sm">{{ testimonio.empresa }}</p>
+                    {% endif %}
                 </div>
             </div>
-            <div class="col-md-4 mb-4">
-                <div class="card h-100">
-                    <div class="card-body text-center">
-                        <i class="fas fa-quote-left fa-2x text-primary mb-3"></i>
-                        <p class="card-text">"Muy profesionales y eficientes."</p>
-                        <h5 class="card-title">Cliente 2</h5>
-                    </div>
-                </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<!-- Por qué elegirnos -->
+<section class="py-16 bg-gradient-to-r from-blue-100 via-white to-green-100">
+    <div class="container mx-auto px-4">
+        <h2 class="text-3xl font-bold text-center mb-10 text-blue-900">¿Por qué elegirnos?</h2>
+        <div class="flex flex-wrap justify-center gap-8">
+            <div class="bg-white rounded-lg shadow-lg p-6 w-64 text-center border-b-4 border-green-400">
+                <i class="fas fa-bolt text-4xl text-green-400 mb-4"></i>
+                <h4 class="font-semibold text-blue-900">Respuesta Rápida</h4>
+                <p class="text-gray-700 text-sm">Atención inmediata y soporte personalizado.</p>
             </div>
-            <div class="col-md-4 mb-4">
-                <div class="card h-100">
-                    <div class="card-body text-center">
-                        <i class="fas fa-quote-left fa-2x text-primary mb-3"></i>
-                        <p class="card-text">"Satisfecho con la calidad de sus calderas."</p>
-                        <h5 class="card-title">Cliente 3</h5>
-                    </div>
-                </div>
+            <div class="bg-white rounded-lg shadow-lg p-6 w-64 text-center border-b-4 border-green-400">
+                <i class="fas fa-shield-alt text-4xl text-green-400 mb-4"></i>
+                <h4 class="font-semibold text-blue-900">Garantía y Confianza</h4>
+                <p class="text-gray-700 text-sm">Servicios con respaldo y profesionales certificados.</p>
+            </div>
+            <div class="bg-white rounded-lg shadow-lg p-6 w-64 text-center border-b-4 border-green-400">
+                <i class="fas fa-chart-line text-4xl text-green-400 mb-4"></i>
+                <h4 class="font-semibold text-blue-900">Experiencia</h4>
+                <p class="text-gray-700 text-sm">Más de 10 años en el sector energético.</p>
             </div>
         </div>
     </div>
 </section>
 
-<!-- Llamada a la acción -->
-<section class="py-5 bg-dark text-white text-center">
-    <div class="container">
-        <h2 class="mb-4">¿Necesitas una solución energética?</h2>
-        <p class="lead mb-4">Contáctanos y encuentra la mejor opción para tu empresa</p>
-        <a href="https://wa.me/56996952092" class="btn btn-success btn-lg me-3" target="_blank">
-            <i class="fab fa-whatsapp"></i> WhatsApp
-        </a>
-        <a href="{% url 'contacto' }}" class="btn btn-primary btn-lg">Formulario de Contacto</a>
+<!-- Galería de Proyectos -->
+<section class="bg-white py-16">
+    <div class="container mx-auto px-4">
+        <h2 class="text-3xl font-bold text-center mb-10 text-blue-900">Galería de Proyectos</h2>
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+            {% for proyecto in proyectos %}
+            <div class="overflow-hidden rounded-xl shadow-lg hover:scale-105 transition-transform duration-300">
+                {% if proyecto.imagen %}
+                <img src="{{ proyecto.imagen.url }}" alt="{{ proyecto.titulo }}" class="w-full h-48 object-cover">
+                {% endif %}
+                <div class="p-4 bg-white">
+                    <h3 class="font-semibold text-blue-900">{{ proyecto.titulo }}</h3>
+                    <p class="text-gray-600 text-sm">{{ proyecto.cliente }}</p>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<!-- Contacto -->
+<section id="contacto" class="py-16 bg-gradient-to-r from-green-100 via-white to-blue-100">
+    <div class="container mx-auto px-4 max-w-xl">
+        <h2 class="text-3xl font-bold text-center mb-8 text-blue-900">Contáctanos</h2>
+        <form method="POST" class="bg-white rounded-lg shadow-lg p-8">
+            {% csrf_token %}
+            {% for field in form %}
+            <div class="mb-4">
+                <label class="block text-gray-700 text-sm font-bold mb-2" for="{{ field.id_for_label }}">
+                    {{ field.label }}
+                </label>
+                {{ field }}
+                {% if field.errors %}
+                <p class="text-red-500 text-xs italic">{{ field.errors.0 }}</p>
+                {% endif %}
+            </div>
+            {% endfor %}
+            <button type="submit" class="w-full bg-blue-900 hover:bg-blue-800 text-white font-semibold py-3 rounded-lg mt-6 transition-all">
+                Enviar Mensaje
+            </button>
+        </form>
+        <div class="text-center mt-8">
+            <a href="https://wa.me/56996952092" target="_blank" class="inline-block bg-green-400 hover:bg-green-500 text-blue-900 font-semibold py-2 px-6 rounded-lg shadow-lg transition-all">
+                Escríbenos por WhatsApp
+            </a>
+        </div>
     </div>
 </section>
 {% endblock %} 
