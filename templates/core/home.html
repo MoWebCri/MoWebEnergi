@@ -1,0 +1,116 @@
+{% extends 'core/base.html' %}
+
+{% block title %}Inicio - Energías Brunetti{% endblock %}
+
+{% block content %}
+<!-- Banner Principal (Hero Section) -->
+<section class="hero-section text-center py-5 bg-dark text-white">
+    <div class="container">
+        <h1 class="display-4 fade-in">Expertos en Calderas Industriales</h1>
+        <p class="lead fade-in">Soluciones energéticas eficientes para tu empresa</p>
+        <a href="{% url 'contacto' %}" class="btn btn-primary btn-lg mt-3 fade-in">Contáctanos</a>
+    </div>
+</section>
+
+<!-- Sección de Servicios Destacados -->
+<section class="py-5">
+    <div class="container">
+        <h2 class="text-center mb-5">Nuestros Servicios</h2>
+        <div class="row">
+            {% for servicio in servicios %}
+            <div class="col-md-4 mb-4">
+                <div class="card service-card h-100">
+                    {% if servicio.imagen %}
+                    <img src="{{ servicio.imagen.url }}" class="card-img-top" alt="{{ servicio.titulo }}">
+                    {% endif %}
+                    <div class="card-body">
+                        <h5 class="card-title">{{ servicio.titulo }}</h5>
+                        <p class="card-text">{{ servicio.descripcion }}</p>
+                        <a href="{% url 'contacto' }}" class="btn btn-outline-primary">Saber más</a>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<!-- Sección de Calderas Destacadas -->
+<section class="py-5 bg-light">
+    <div class="container">
+        <h2 class="text-center mb-5">Nuestras Calderas</h2>
+        <div class="row">
+            {% for caldera in calderas|slice:":3" %}
+            <div class="col-md-4 mb-4">
+                <div class="card caldera-card h-100">
+                    {% if caldera.imagen %}
+                    <img src="{{ caldera.imagen.url }}" class="card-img-top" alt="{{ caldera.nombre }}">
+                    {% endif %}
+                    <div class="card-body">
+                        <h5 class="card-title">{{ caldera.nombre }}</h5>
+                        <p class="card-text">
+                            <strong>Potencia:</strong> {{ caldera.potencia }}<br>
+                            <strong>Tipo:</strong> {{ caldera.tipo }}
+                        </p>
+                        {% if caldera.descripcion %}
+                        <p class="card-text">{{ caldera.descripcion }}</p>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        <div class="text-center mt-4">
+            <a href="{% url 'calderas' }}" class="btn btn-outline-primary">Ver todas las calderas</a>
+        </div>
+    </div>
+</section>
+
+<!-- Sección de Reseñas (Comentarios de Clientes) -->
+<section class="py-5">
+    <div class="container">
+        <h2 class="text-center mb-5">Lo que dicen nuestros clientes</h2>
+        <div class="row">
+            <div class="col-md-4 mb-4">
+                <div class="card h-100">
+                    <div class="card-body text-center">
+                        <i class="fas fa-quote-left fa-2x text-primary mb-3"></i>
+                        <p class="card-text">"Excelente servicio y atención. Recomendados."</p>
+                        <h5 class="card-title">Cliente 1</h5>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="card h-100">
+                    <div class="card-body text-center">
+                        <i class="fas fa-quote-left fa-2x text-primary mb-3"></i>
+                        <p class="card-text">"Muy profesionales y eficientes."</p>
+                        <h5 class="card-title">Cliente 2</h5>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="card h-100">
+                    <div class="card-body text-center">
+                        <i class="fas fa-quote-left fa-2x text-primary mb-3"></i>
+                        <p class="card-text">"Satisfecho con la calidad de sus calderas."</p>
+                        <h5 class="card-title">Cliente 3</h5>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Llamada a la acción -->
+<section class="py-5 bg-dark text-white text-center">
+    <div class="container">
+        <h2 class="mb-4">¿Necesitas una solución energética?</h2>
+        <p class="lead mb-4">Contáctanos y encuentra la mejor opción para tu empresa</p>
+        <a href="https://wa.me/56996952092" class="btn btn-success btn-lg me-3" target="_blank">
+            <i class="fab fa-whatsapp"></i> WhatsApp
+        </a>
+        <a href="{% url 'contacto' }}" class="btn btn-primary btn-lg">Formulario de Contacto</a>
+    </div>
+</section>
+{% endblock %} 

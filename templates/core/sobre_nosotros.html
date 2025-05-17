@@ -1,0 +1,99 @@
+{% extends 'core/base.html' %}
+
+{% block title %}Sobre Nosotros - Energías Brunetti{% endblock %}
+
+{% block content %}
+<!-- Hero Section -->
+<section class="hero-section">
+    <div class="container">
+        <h1 class="fade-in">Sobre Nosotros</h1>
+        <p class="lead fade-in">Expertos en soluciones energéticas industriales</p>
+    </div>
+</section>
+
+<!-- Historia -->
+<section class="py-5">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-6 mb-4 mb-lg-0">
+                <h2 class="mb-4">Nuestra Historia</h2>
+                <p class="lead">Energías Brunetti nace con la misión de proporcionar soluciones energéticas eficientes y confiables para el sector industrial.</p>
+                <p>Con años de experiencia en el mercado, nos hemos consolidado como líderes en el sector de calderas industriales, ofreciendo productos y servicios de la más alta calidad.</p>
+                <p>Nuestro compromiso con la excelencia y la satisfacción del cliente nos ha permitido crecer y mantener relaciones duraderas con empresas de diversos sectores industriales.</p>
+            </div>
+            <div class="col-lg-6">
+                <div class="card">
+                    <div class="card-body">
+                        <h3 class="card-title mb-4">Nuestros Valores</h3>
+                        <div class="d-flex mb-3">
+                            <div class="flex-shrink-0">
+                                <i class="fas fa-check-circle text-primary fa-2x me-3"></i>
+                            </div>
+                            <div>
+                                <h5>Excelencia</h5>
+                                <p class="mb-0">Compromiso con la calidad en cada aspecto de nuestro trabajo.</p>
+                            </div>
+                        </div>
+                        <div class="d-flex mb-3">
+                            <div class="flex-shrink-0">
+                                <i class="fas fa-check-circle text-primary fa-2x me-3"></i>
+                            </div>
+                            <div>
+                                <h5>Innovación</h5>
+                                <p class="mb-0">Búsqueda constante de soluciones más eficientes y sostenibles.</p>
+                            </div>
+                        </div>
+                        <div class="d-flex">
+                            <div class="flex-shrink-0">
+                                <i class="fas fa-check-circle text-primary fa-2x me-3"></i>
+                            </div>
+                            <div>
+                                <h5>Compromiso</h5>
+                                <p class="mb-0">Dedicación total a la satisfacción de nuestros clientes.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Misión y Visión -->
+<section class="py-5 bg-light">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 mb-4">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <h3 class="card-title mb-4">Nuestra Misión</h3>
+                        <p class="card-text">Proporcionar soluciones energéticas eficientes y confiables que contribuyan al éxito de nuestros clientes, manteniendo los más altos estándares de calidad y servicio.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 mb-4">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <h3 class="card-title mb-4">Nuestra Visión</h3>
+                        <p class="card-text">Ser reconocidos como líderes en el sector de soluciones energéticas industriales, innovando constantemente y manteniendo nuestro compromiso con la excelencia y la sostenibilidad.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Llamada a la acción -->
+<section class="py-5">
+    <div class="container text-center">
+        <h2 class="mb-4">¿Quieres trabajar con nosotros?</h2>
+        <p class="lead mb-4">Contáctanos y descubre cómo podemos ayudarte a optimizar tu consumo energético</p>
+        <div class="d-flex justify-content-center gap-3">
+            <a href="https://wa.me/56996952092" class="btn btn-success btn-lg" target="_blank">
+                <i class="fab fa-whatsapp"></i> WhatsApp
+            </a>
+            <a href="{% url 'contacto' %}" class="btn btn-primary btn-lg">Formulario de Contacto</a>
+        </div>
+    </div>
+</section>
+{% endblock %} 

@@ -1,0 +1,71 @@
+{% extends 'core/base.html' %}
+{% load crispy_forms_tags %}
+
+{% block title %}Contacto - Energías Brunetti{% endblock %}
+
+{% block content %}
+<!-- Hero Section -->
+<section class="hero-section">
+    <div class="container">
+        <h1 class="fade-in">Contacto</h1>
+        <p class="lead fade-in">Estamos aquí para ayudarte</p>
+    </div>
+</section>
+
+<!-- Información de Contacto y Formulario -->
+<section class="py-5">
+    <div class="container">
+        <div class="row">
+            <!-- Información de Contacto -->
+            <div class="col-lg-4 mb-4">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <h3 class="card-title mb-4">Información de Contacto</h3>
+                        <div class="mb-4">
+                            <h5><i class="fas fa-phone me-2"></i> Teléfono</h5>
+                            <p class="mb-0">
+                                <a href="tel:+56996952092" class="text-decoration-none">+56 9 96952092</a>
+                            </p>
+                        </div>
+                        <div class="mb-4">
+                            <h5><i class="fas fa-envelope me-2"></i> Email</h5>
+                            <p class="mb-0">
+                                <a href="mailto:Info@energiasbrunetti.cl" class="text-decoration-none">Info@energiasbrunetti.cl</a>
+                            </p>
+                        </div>
+                        <div class="mb-4">
+                            <h5><i class="fab fa-whatsapp me-2"></i> WhatsApp</h5>
+                            <p class="mb-0">
+                                <a href="https://wa.me/56996952092" class="btn btn-success" target="_blank">
+                                    <i class="fab fa-whatsapp"></i> Chatear con nosotros
+                                </a>
+                            </p>
+                        </div>
+                        <div>
+                            <h5><i class="fas fa-clock me-2"></i> Horario de Atención</h5>
+                            <p class="mb-0">
+                                Lunes a Viernes: 9:00 - 18:00<br>
+                                Sábado: 9:00 - 13:00
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Formulario de Contacto -->
+            <div class="col-lg-8">
+                <div class="card contact-form">
+                    <div class="card-body">
+                        <h3 class="card-title mb-4">Envíanos un mensaje</h3>
+                        <form method="post">
+                            {% csrf_token %}
+                            {{ form|crispy }}
+                            <button type="submit" class="btn btn-primary">Enviar Mensaje</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %} 

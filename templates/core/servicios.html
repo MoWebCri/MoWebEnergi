@@ -1,0 +1,55 @@
+{% extends 'core/base.html' %}
+
+{% block title %}Servicios - Energías Brunetti{% endblock %}
+
+{% block content %}
+<!-- Hero Section -->
+<section class="hero-section">
+    <div class="container">
+        <h1 class="fade-in">Nuestros Servicios</h1>
+        <p class="lead fade-in">Soluciones integrales en calderas industriales</p>
+    </div>
+</section>
+
+<!-- Servicios Detallados -->
+<section class="py-5">
+    <div class="container">
+        <div class="row">
+            {% for servicio in servicios %}
+            <div class="col-lg-6 mb-5">
+                <div class="card service-card h-100">
+                    <div class="row g-0">
+                        {% if servicio.imagen %}
+                        <div class="col-md-4">
+                            <img src="{{ servicio.imagen.url }}" class="img-fluid rounded-start h-100" alt="{{ servicio.titulo }}" style="object-fit: cover;">
+                        </div>
+                        {% endif %}
+                        <div class="col-md-{% if servicio.imagen %}8{% else %}12{% endif %}">
+                            <div class="card-body">
+                                <h3 class="card-title">{{ servicio.titulo }}</h3>
+                                <p class="card-text">{{ servicio.descripcion }}</p>
+                                <a href="{% url 'contacto' %}" class="btn btn-primary">Solicitar Información</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<!-- Llamada a la acción -->
+<section class="py-5 bg-light">
+    <div class="container text-center">
+        <h2 class="mb-4">¿Necesitas más información?</h2>
+        <p class="lead mb-4">Nuestro equipo está listo para ayudarte a encontrar la mejor solución para tu empresa</p>
+        <div class="d-flex justify-content-center gap-3">
+            <a href="https://wa.me/56996952092" class="btn btn-success btn-lg" target="_blank">
+                <i class="fab fa-whatsapp"></i> WhatsApp
+            </a>
+            <a href="{% url 'contacto' %}" class="btn btn-primary btn-lg">Formulario de Contacto</a>
+        </div>
+    </div>
+</section>
+{% endblock %} 

@@ -1,0 +1,63 @@
+{% extends 'core/base.html' %}
+
+{% block title %}Calderas - Energías Brunetti{% endblock %}
+
+{% block content %}
+<!-- Hero Section -->
+<section class="hero-section">
+    <div class="container">
+        <h1 class="fade-in">Nuestras Calderas</h1>
+        <p class="lead fade-in">Amplia gama de calderas industriales de alta eficiencia</p>
+    </div>
+</section>
+
+<!-- Lista de Calderas -->
+<section class="py-5">
+    <div class="container">
+        <div class="row">
+            {% for caldera in calderas %}
+            <div class="col-md-6 col-lg-4 mb-4">
+                <div class="card caldera-card h-100">
+                    {% if caldera.imagen %}
+                    <img src="{{ caldera.imagen.url }}" class="card-img-top" alt="{{ caldera.nombre }}">
+                    {% endif %}
+                    <div class="card-body">
+                        <h3 class="card-title h4">{{ caldera.nombre }}</h3>
+                        <div class="card-text">
+                            <p class="mb-2">
+                                <strong><i class="fas fa-bolt"></i> Potencia:</strong><br>
+                                {{ caldera.potencia }}
+                            </p>
+                            <p class="mb-2">
+                                <strong><i class="fas fa-cog"></i> Tipo:</strong><br>
+                                {{ caldera.tipo }}
+                            </p>
+                            {% if caldera.descripcion %}
+                            <p class="mb-3">
+                                <strong><i class="fas fa-info-circle"></i> Descripción:</strong><br>
+                                {{ caldera.descripcion }}
+                            </p>
+                            {% endif %}
+                        </div>
+                        <a href="{% url 'contacto' %}" class="btn btn-primary">Solicitar Información</a>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<!-- Llamada a la acción -->
+<section class="py-5 bg-light">
+    <div class="container text-center">
+        <h2 class="mb-4">¿No encuentras lo que buscas?</h2>
+        <p class="lead mb-4">Contáctanos y te ayudaremos a encontrar la caldera perfecta para tus necesidades</p>
+        <div class="d-flex justify-content-center gap-3">
+            <a href="https://wa.me/56996952092" class="btn btn-success btn-lg" target="_blank">
+                <i class="fab fa-whatsapp"></i> WhatsApp
+            </a>
+            <a href="{% url 'contacto' %}" class="btn btn-primary btn-lg">Formulario de Contacto</a>
+        </div>
+    </div>
+ 
