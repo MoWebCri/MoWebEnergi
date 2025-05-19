@@ -1,165 +1,309 @@
 {% extends 'core/base.html' %}
 {% load static %}
 
-{% block title %}Inicio - Energías Brunetti{% endblock %}
+{% block title %}Energías Brunetti - Soluciones en Calderas Industriales{% endblock %}
+
+{% block extra_head %}
+<!-- AOS CSS -->
+<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+<!-- Animate.css -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+{% endblock %}
 
 {% block content %}
-<!-- Hero Section -->
-<section class="relative bg-gradient-to-r from-blue-900 via-blue-700 to-blue-500 text-white py-24 px-6 flex items-center justify-center">
-    <div class="max-w-2xl text-center z-10">
-        <h1 class="text-5xl font-bold mb-4 animate-fade-in-down drop-shadow-lg">Soluciones Energéticas Inteligentes</h1>
-        <p class="mb-6 text-xl">Arriendo y mantención de calderas industriales, respaldo profesional y atención inmediata.</p>
-        <a href="https://wa.me/56996952092" target="_blank" class="inline-block bg-green-400 hover:bg-green-500 text-blue-900 font-semibold py-3 px-8 rounded-lg shadow-lg transition-all animate-bounce">
-            Cotiza por WhatsApp
-        </a>
+<!-- Hero Section con imagen del camión -->
+<section class="relative bg-gradient-to-r from-blue-900 via-blue-700 to-blue-500 text-white py-32 px-6 flex items-center justify-center overflow-hidden">
+    <div class="absolute inset-0">
+        <img src="{% static 'img/camion.png' %}" 
+             alt="Camión Energías Brunetti" 
+             class="w-full h-full object-cover opacity-20">
     </div>
-    <img src="{% static 'images/hero-bg.webp' %}" alt="Banner Energía" class="absolute inset-0 w-full h-full object-cover opacity-30 pointer-events-none" />
-</section>
-
-<!-- Servicios Destacados -->
-<section class="bg-white py-16">
-    <div class="container mx-auto px-4">
-        <h2 class="text-3xl font-bold text-center mb-10 text-blue-900">Nuestros Servicios</h2>
-        <div class="grid md:grid-cols-3 gap-8">
-            {% for servicio in servicios %}
-            <div class="bg-white shadow-xl rounded-xl p-6 hover:scale-105 transition-transform duration-300 border-t-4 border-green-400 glass-effect">
-                {% if servicio.imagen %}
-                <img src="{{ servicio.imagen.url }}" alt="{{ servicio.titulo }}" class="w-16 h-16 mb-4 mx-auto rounded-lg">
-                {% endif %}
-                <h3 class="text-xl font-semibold mb-2 text-blue-900">{{ servicio.titulo }}</h3>
-                <p class="text-gray-700 mb-4">{{ servicio.descripcion }}</p>
-                <a href="#contacto" class="text-green-500 font-semibold hover:underline">¡Solicita más info!</a>
-            </div>
-            {% endfor %}
+    <div class="absolute inset-0 bg-black opacity-40"></div>
+    <div class="max-w-4xl text-center z-10" data-aos="fade-up" data-aos-duration="1000">
+        <h1 class="text-6xl font-bold mb-6 animate__animated animate__fadeInDown">Energías Brunetti</h1>
+        <p class="text-2xl mb-8 animate__animated animate__fadeInUp animate__delay-1s">Soluciones integrales en calderas industriales de última generación</p>
+        <div class="flex flex-wrap justify-center gap-4 animate__animated animate__fadeInUp animate__delay-2s">
+            <a href="{% url 'servicios' %}" class="inline-block bg-green-400 hover:bg-green-500 text-blue-900 font-semibold py-3 px-8 rounded-lg shadow-lg transition-all transform hover:scale-105">
+                Nuestros Servicios
+            </a>
+            <a href="{% url 'calderas' %}" class="inline-block bg-white hover:bg-gray-100 text-blue-900 font-semibold py-3 px-8 rounded-lg shadow-lg transition-all transform hover:scale-105">
+                Catálogo de Calderas
+            </a>
         </div>
     </div>
 </section>
 
-<!-- Calderas Destacadas -->
-<section class="bg-gray-50 py-16">
+<!-- Sección de Servicios Destacados -->
+<section class="py-20 bg-gradient-to-b from-white to-gray-50">
     <div class="container mx-auto px-4">
-        <h2 class="text-3xl font-bold text-center mb-10 text-blue-900">Nuestras Calderas</h2>
+        <h2 class="text-4xl font-bold text-center mb-16 text-blue-900" data-aos="fade-up">
+            Nuestros Servicios
+        </h2>
+        <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+            <!-- Arriendo -->
+            <div class="bg-white rounded-xl shadow-xl p-6 transform hover:scale-105 transition-all duration-300" 
+                 data-aos="fade-up" data-aos-delay="100">
+                <div class="text-center mb-4">
+                    <i class="fas fa-handshake text-5xl text-blue-900 mb-4 animate__animated animate__pulse animate__infinite"></i>
+                    <h3 class="text-xl font-bold text-blue-900">Arriendo de Calderas</h3>
+                </div>
+                <p class="text-gray-600 text-center">Soluciones flexibles para corto, mediano y largo plazo. Adaptadas a tus necesidades.</p>
+            </div>
+            <!-- Reparación -->
+            <div class="bg-white rounded-xl shadow-xl p-6 transform hover:scale-105 transition-all duration-300" 
+                 data-aos="fade-up" data-aos-delay="200">
+                <div class="text-center mb-4">
+                    <i class="fas fa-tools text-5xl text-blue-900 mb-4 animate__animated animate__wrench animate__infinite"></i>
+                    <h3 class="text-xl font-bold text-blue-900">Reparación</h3>
+                </div>
+                <p class="text-gray-600 text-center">Servicio integral de eficiencia energética con equipo experto en reparaciones.</p>
+            </div>
+            <!-- Mantención -->
+            <div class="bg-white rounded-xl shadow-xl p-6 transform hover:scale-105 transition-all duration-300" 
+                 data-aos="fade-up" data-aos-delay="300">
+                <div class="text-center mb-4">
+                    <i class="fas fa-clipboard-check text-5xl text-blue-900 mb-4 animate__animated animate__heartBeat animate__infinite"></i>
+                    <h3 class="text-xl font-bold text-blue-900">Mantención</h3>
+                </div>
+                <p class="text-gray-600 text-center">Mantención profesional para todo tipo de calderas industriales.</p>
+            </div>
+            <!-- Compra -->
+            <div class="bg-white rounded-xl shadow-xl p-6 transform hover:scale-105 transition-all duration-300" 
+                 data-aos="fade-up" data-aos-delay="400">
+                <div class="text-center mb-4">
+                    <i class="fas fa-shopping-cart text-5xl text-blue-900 mb-4 animate__animated animate__bounce animate__infinite"></i>
+                    <h3 class="text-xl font-bold text-blue-900">Compra</h3>
+                </div>
+                <p class="text-gray-600 text-center">Asesoría personalizada para encontrar la caldera perfecta para tu empresa.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Sección de Calderas Destacadas -->
+<section class="py-20 bg-gradient-to-b from-gray-50 to-white">
+    <div class="container mx-auto px-4">
+        <h2 class="text-4xl font-bold text-center mb-16 text-blue-900" data-aos="fade-up">
+            Nuestras Calderas
+        </h2>
         <div class="grid md:grid-cols-3 gap-8">
-            {% for caldera in calderas|slice:":3" %}
-            <div class="bg-white shadow-xl rounded-xl overflow-hidden hover:scale-105 transition-transform duration-300">
-                {% if caldera.imagen %}
-                <img src="{{ caldera.imagen.url }}" alt="{{ caldera.nombre }}" class="w-full h-48 object-cover">
-                {% endif %}
+            <!-- Alta Capacidad -->
+            <div class="bg-white rounded-xl shadow-xl overflow-hidden transform hover:scale-105 transition-all duration-300" 
+                 data-aos="flip-left" data-aos-delay="100">
                 <div class="p-6">
-                    <h3 class="text-xl font-semibold mb-2 text-blue-900">{{ caldera.nombre }}</h3>
-                    <div class="text-gray-700 mb-4">
-                        <p><strong>Potencia:</strong> {{ caldera.potencia }}</p>
-                        <p><strong>Tipo:</strong> {{ caldera.tipo }}</p>
-                        {% if caldera.descripcion %}
-                        <p class="mt-2">{{ caldera.descripcion }}</p>
-                        {% endif %}
+                    <h3 class="text-2xl font-bold text-blue-900 mb-4">Alta Capacidad</h3>
+                    <ul class="space-y-3">
+                        <li class="flex items-center">
+                            <i class="fas fa-fire text-green-400 mr-2"></i>
+                            <span>Cleaver Brooks 12.000 KHV Dual</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-fire text-green-400 mr-2"></i>
+                            <span>Paradies 10.000 KHV Dual</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <!-- Media Capacidad -->
+            <div class="bg-white rounded-xl shadow-xl overflow-hidden transform hover:scale-105 transition-all duration-300" 
+                 data-aos="flip-left" data-aos-delay="200">
+                <div class="p-6">
+                    <h3 class="text-2xl font-bold text-blue-900 mb-4">Media Capacidad</h3>
+                    <ul class="space-y-3">
+                        <li class="flex items-center">
+                            <i class="fas fa-fire text-green-400 mr-2"></i>
+                            <span>ABCO 8.000 KHV Dual</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-fire text-green-400 mr-2"></i>
+                            <span>Geat Transfer 5.300 KHV Dual</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-fire text-green-400 mr-2"></i>
+                            <span>ICI 5.100 KHV Dual</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <!-- Baja Capacidad -->
+            <div class="bg-white rounded-xl shadow-xl overflow-hidden transform hover:scale-105 transition-all duration-300" 
+                 data-aos="flip-left" data-aos-delay="300">
+                <div class="p-6">
+                    <h3 class="text-2xl font-bold text-blue-900 mb-4">Baja Capacidad</h3>
+                    <ul class="space-y-3">
+                        <li class="flex items-center">
+                            <i class="fas fa-fire text-green-400 mr-2"></i>
+                            <span>ICI 4.270 KHV Dual</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-fire text-green-400 mr-2"></i>
+                            <span>Socometal 1.500 KHV Dual</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-fire text-green-400 mr-2"></i>
+                            <span>Bríones 1.000 KHV Diesel</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="text-center mt-12">
+            <a href="{% url 'calderas' %}" class="inline-block bg-blue-900 hover:bg-blue-800 text-white font-semibold py-3 px-8 rounded-lg shadow-lg transition-all transform hover:scale-105">
+                Ver Catálogo Completo
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- Sección de Testimonios -->
+<section class="py-20 bg-gradient-to-b from-white to-gray-50">
+    <div class="container mx-auto px-4">
+        <h2 class="text-4xl font-bold text-center mb-16 text-blue-900" data-aos="fade-up">
+            Lo que dicen nuestros clientes
+        </h2>
+        <div class="grid md:grid-cols-3 gap-8">
+            <!-- Testimonio 1 -->
+            <div class="bg-white rounded-xl shadow-xl p-8 transform hover:scale-105 transition-all duration-300" 
+                 data-aos="fade-up" data-aos-delay="100">
+                <div class="flex items-center mb-4">
+                    <i class="fas fa-star text-yellow-400 text-xl"></i>
+                    <i class="fas fa-star text-yellow-400 text-xl"></i>
+                    <i class="fas fa-star text-yellow-400 text-xl"></i>
+                    <i class="fas fa-star text-yellow-400 text-xl"></i>
+                    <i class="fas fa-star text-yellow-400 text-xl"></i>
+                </div>
+                <p class="text-gray-600 mb-6">"Excelente servicio de mantención. El equipo técnico es muy profesional y eficiente. Han mantenido nuestras calderas en óptimas condiciones."</p>
+                <div class="flex items-center">
+                    <div class="ml-4">
+                        <h4 class="font-bold text-blue-900">Industrias del Norte</h4>
+                        <p class="text-gray-500 text-sm">Cliente desde 2020</p>
                     </div>
-                    <a href="#contacto" class="inline-block bg-blue-900 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors">Solicitar Información</a>
                 </div>
             </div>
-            {% endfor %}
+            <!-- Testimonio 2 -->
+            <div class="bg-white rounded-xl shadow-xl p-8 transform hover:scale-105 transition-all duration-300" 
+                 data-aos="fade-up" data-aos-delay="200">
+                <div class="flex items-center mb-4">
+                    <i class="fas fa-star text-yellow-400 text-xl"></i>
+                    <i class="fas fa-star text-yellow-400 text-xl"></i>
+                    <i class="fas fa-star text-yellow-400 text-xl"></i>
+                    <i class="fas fa-star text-yellow-400 text-xl"></i>
+                    <i class="fas fa-star text-yellow-400 text-xl"></i>
+                </div>
+                <p class="text-gray-600 mb-6">"La caldera Cleaver Brooks que arrendamos ha sido fundamental para nuestro proceso productivo. El servicio post-venta es excepcional."</p>
+                <div class="flex items-center">
+                    <div class="ml-4">
+                        <h4 class="font-bold text-blue-900">Agroindustria del Sur</h4>
+                        <p class="text-gray-500 text-sm">Cliente desde 2021</p>
+                    </div>
+                </div>
+            </div>
+            <!-- Testimonio 3 -->
+            <div class="bg-white rounded-xl shadow-xl p-8 transform hover:scale-105 transition-all duration-300" 
+                 data-aos="fade-up" data-aos-delay="300">
+                <div class="flex items-center mb-4">
+                    <i class="fas fa-star text-yellow-400 text-xl"></i>
+                    <i class="fas fa-star text-yellow-400 text-xl"></i>
+                    <i class="fas fa-star text-yellow-400 text-xl"></i>
+                    <i class="fas fa-star text-yellow-400 text-xl"></i>
+                    <i class="fas fa-star text-yellow-400 text-xl"></i>
+                </div>
+                <p class="text-gray-600 mb-6">"La asesoría técnica y el soporte que nos brindan es invaluable. Han optimizado significativamente nuestro consumo energético."</p>
+                <div class="flex items-center">
+                    <div class="ml-4">
+                        <h4 class="font-bold text-blue-900">Minera Central</h4>
+                        <p class="text-gray-500 text-sm">Cliente desde 2019</p>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="text-center mt-8">
-            <a href="{% url 'calderas' %}" class="inline-block bg-green-400 text-blue-900 px-6 py-3 rounded-lg font-semibold hover:bg-green-500 transition-colors">
-                Ver todas las calderas
+    </div>
+</section>
+
+<!-- Sección Por qué Elegirnos -->
+<section class="py-20 bg-gradient-to-b from-gray-50 to-white">
+    <div class="container mx-auto px-4">
+        <h2 class="text-4xl font-bold text-center mb-16 text-blue-900" data-aos="fade-up">
+            ¿Por qué elegirnos?
+        </h2>
+        <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+            <!-- Experiencia -->
+            <div class="bg-white rounded-xl shadow-xl p-6 text-center transform hover:scale-105 transition-all duration-300" 
+                 data-aos="zoom-in" data-aos-delay="100">
+                <div class="w-20 h-20 bg-blue-900 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <i class="fas fa-medal text-3xl text-white"></i>
+                </div>
+                <h3 class="text-xl font-bold text-blue-900 mb-3">Experiencia</h3>
+                <p class="text-gray-600">Más de 20 años en el mercado industrial, brindando soluciones confiables.</p>
+            </div>
+            <!-- Equipo Técnico -->
+            <div class="bg-white rounded-xl shadow-xl p-6 text-center transform hover:scale-105 transition-all duration-300" 
+                 data-aos="zoom-in" data-aos-delay="200">
+                <div class="w-20 h-20 bg-blue-900 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <i class="fas fa-users text-3xl text-white"></i>
+                </div>
+                <h3 class="text-xl font-bold text-blue-900 mb-3">Equipo Técnico</h3>
+                <p class="text-gray-600">Personal altamente capacitado y certificado en todas las marcas.</p>
+            </div>
+            <!-- Servicio 24/7 -->
+            <div class="bg-white rounded-xl shadow-xl p-6 text-center transform hover:scale-105 transition-all duration-300" 
+                 data-aos="zoom-in" data-aos-delay="300">
+                <div class="w-20 h-20 bg-blue-900 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <i class="fas fa-clock text-3xl text-white"></i>
+                </div>
+                <h3 class="text-xl font-bold text-blue-900 mb-3">Servicio 24/7</h3>
+                <p class="text-gray-600">Soporte técnico disponible las 24 horas para emergencias.</p>
+            </div>
+            <!-- Garantía -->
+            <div class="bg-white rounded-xl shadow-xl p-6 text-center transform hover:scale-105 transition-all duration-300" 
+                 data-aos="zoom-in" data-aos-delay="400">
+                <div class="w-20 h-20 bg-blue-900 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <i class="fas fa-shield-alt text-3xl text-white"></i>
+                </div>
+                <h3 class="text-xl font-bold text-blue-900 mb-3">Garantía</h3>
+                <p class="text-gray-600">Todos nuestros servicios y equipos cuentan con garantía extendida.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Llamada a la acción -->
+<section class="py-20 bg-gradient-to-r from-blue-900 via-blue-700 to-blue-500 relative overflow-hidden">
+    <div class="absolute inset-0 bg-black opacity-20"></div>
+    <div class="container mx-auto px-4 text-center relative z-10" data-aos="zoom-in">
+        <h2 class="text-4xl font-bold mb-6 text-white">
+            ¿Listo para optimizar tu sistema de calderas?
+        </h2>
+        <p class="text-xl text-white mb-10 max-w-2xl mx-auto">
+            Contáctanos hoy mismo y descubre cómo podemos ayudarte a mejorar la eficiencia de tu empresa.
+        </p>
+        <div class="flex flex-wrap justify-center gap-6">
+            <a href="https://wa.me/56996952092" 
+               target="_blank"
+               class="group inline-flex items-center bg-green-400 hover:bg-green-500 text-blue-900 font-semibold py-4 px-8 rounded-lg shadow-lg transition-all transform hover:scale-105">
+                <i class="fab fa-whatsapp text-2xl mr-3 group-hover:animate__animated group-hover:animate__bounce"></i>
+                <span class="text-lg">WhatsApp</span>
+            </a>
+            <a href="{% url 'contacto' %}" 
+               class="group inline-flex items-center bg-white hover:bg-gray-100 text-blue-900 font-semibold py-4 px-8 rounded-lg shadow-lg transition-all transform hover:scale-105">
+                <i class="fas fa-envelope text-2xl mr-3 group-hover:animate__animated group-hover:animate__pulse"></i>
+                <span class="text-lg">Formulario de Contacto</span>
             </a>
         </div>
     </div>
 </section>
 
-<!-- Testimonios -->
-<section class="bg-white py-16">
-    <div class="container mx-auto px-4">
-        <h2 class="text-3xl font-bold text-center mb-8 text-blue-900">Lo que dicen nuestros clientes</h2>
-        <div class="grid md:grid-cols-2 gap-8">
-            {% for testimonio in testimonios %}
-            <div class="bg-gray-50 rounded-lg shadow-md p-6 flex items-center gap-4">
-                {% if testimonio.imagen_cliente %}
-                <img src="{{ testimonio.imagen_cliente.url }}" alt="{{ testimonio.cliente }}" class="w-16 h-16 rounded-full border-2 border-green-400">
-                {% endif %}
-                <div>
-                    <p class="italic text-gray-700 mb-2">"{{ testimonio.comentario }}"</p>
-                    <p class="font-bold text-blue-900">{{ testimonio.cliente }}</p>
-                    {% if testimonio.empresa %}
-                    <p class="text-gray-600 text-sm">{{ testimonio.empresa }}</p>
-                    {% endif %}
-                </div>
-            </div>
-            {% endfor %}
-        </div>
-    </div>
-</section>
 
-<!-- Por qué elegirnos -->
-<section class="py-16 bg-gradient-to-r from-blue-100 via-white to-green-100">
-    <div class="container mx-auto px-4">
-        <h2 class="text-3xl font-bold text-center mb-10 text-blue-900">¿Por qué elegirnos?</h2>
-        <div class="flex flex-wrap justify-center gap-8">
-            <div class="bg-white rounded-lg shadow-lg p-6 w-64 text-center border-b-4 border-green-400">
-                <i class="fas fa-bolt text-4xl text-green-400 mb-4"></i>
-                <h4 class="font-semibold text-blue-900">Respuesta Rápida</h4>
-                <p class="text-gray-700 text-sm">Atención inmediata y soporte personalizado.</p>
-            </div>
-            <div class="bg-white rounded-lg shadow-lg p-6 w-64 text-center border-b-4 border-green-400">
-                <i class="fas fa-shield-alt text-4xl text-green-400 mb-4"></i>
-                <h4 class="font-semibold text-blue-900">Garantía y Confianza</h4>
-                <p class="text-gray-700 text-sm">Servicios con respaldo y profesionales certificados.</p>
-            </div>
-            <div class="bg-white rounded-lg shadow-lg p-6 w-64 text-center border-b-4 border-green-400">
-                <i class="fas fa-chart-line text-4xl text-green-400 mb-4"></i>
-                <h4 class="font-semibold text-blue-900">Experiencia</h4>
-                <p class="text-gray-700 text-sm">Más de 10 años en el sector energético.</p>
-            </div>
-        </div>
-    </div>
-</section>
+{% block extra_js %}
+<!-- AOS JS -->
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+    AOS.init({
+        duration: 800,
+        once: true,
+        offset: 100
+    });
+</script>
+{% endblock %}
 
-<!-- Galería de Proyectos -->
-<section class="bg-white py-16">
-    <div class="container mx-auto px-4">
-        <h2 class="text-3xl font-bold text-center mb-10 text-blue-900">Galería de Proyectos</h2>
-        <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-            {% for proyecto in proyectos %}
-            <div class="overflow-hidden rounded-xl shadow-lg hover:scale-105 transition-transform duration-300">
-                {% if proyecto.imagen %}
-                <img src="{{ proyecto.imagen.url }}" alt="{{ proyecto.titulo }}" class="w-full h-48 object-cover">
-                {% endif %}
-                <div class="p-4 bg-white">
-                    <h3 class="font-semibold text-blue-900">{{ proyecto.titulo }}</h3>
-                    <p class="text-gray-600 text-sm">{{ proyecto.cliente }}</p>
-                </div>
-            </div>
-            {% endfor %}
-        </div>
-    </div>
-</section>
-
-<!-- Contacto -->
-<section id="contacto" class="py-16 bg-gradient-to-r from-green-100 via-white to-blue-100">
-    <div class="container mx-auto px-4 max-w-xl">
-        <h2 class="text-3xl font-bold text-center mb-8 text-blue-900">Contáctanos</h2>
-        <form method="POST" class="bg-white rounded-lg shadow-lg p-8">
-            {% csrf_token %}
-            {% for field in form %}
-            <div class="mb-4">
-                <label class="block text-gray-700 text-sm font-bold mb-2" for="{{ field.id_for_label }}">
-                    {{ field.label }}
-                </label>
-                {{ field }}
-                {% if field.errors %}
-                <p class="text-red-500 text-xs italic">{{ field.errors.0 }}</p>
-                {% endif %}
-            </div>
-            {% endfor %}
-            <button type="submit" class="w-full bg-blue-900 hover:bg-blue-800 text-white font-semibold py-3 rounded-lg mt-6 transition-all">
-                Enviar Mensaje
-            </button>
-        </form>
-        <div class="text-center mt-8">
-            <a href="https://wa.me/56996952092" target="_blank" class="inline-block bg-green-400 hover:bg-green-500 text-blue-900 font-semibold py-2 px-6 rounded-lg shadow-lg transition-all">
-                Escríbenos por WhatsApp
-            </a>
-        </div>
-    </div>
-</section>
 {% endblock %} 
