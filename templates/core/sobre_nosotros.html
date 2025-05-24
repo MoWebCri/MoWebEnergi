@@ -4,16 +4,16 @@
 
 {% block content %}
 <!-- Hero Section -->
-<section class="relative bg-gradient-to-r from-blue-900 via-blue-700 to-blue-500 text-white py-32 px-6 flex items-center justify-center overflow-hidden">
-    <div class="absolute inset-0">
+<section class="relative bg-gradient-to-r from-blue-900 via-blue-700 to-blue-500 text-white flex items-center justify-center overflow-hidden mt-0 min-h-[420px]" style="top:-16px;">
+    <div class="absolute inset-0 h-full w-full">
         <img src="{% static 'img/camion.png' %}" 
              alt="Camión Energías Brunetti" 
-             class="w-full h-full object-cover opacity-20">
+             class="w-full h-full object-cover opacity-25 -mt-8">
     </div>
     <div class="absolute inset-0 bg-black opacity-40"></div>
     <div class="container mx-auto relative z-10 text-center" data-aos="fade-up">
-        <h1 class="text-5xl font-bold mb-4 animate-fade-in-down">Sobre Nosotros</h1>
-        <p class="text-xl mb-6">Expertos en soluciones energéticas industriales</p>
+        <h1 class="text-6xl font-bold mb-6 animate__animated animate__fadeInDown">Sobre Nosotros</h1>
+        <p class="text-2xl mb-8 animate__animated animate__fadeInUp animate__delay-1s text-white">Expertos en soluciones energéticas industriales</p>
     </div>
 </section>
 

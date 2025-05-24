@@ -61,11 +61,21 @@
     <nav class="bg-blue-900 text-white shadow-lg fixed w-full z-50">
         <div class="container mx-auto px-4">
             <div class="flex justify-between items-center py-4">
-                <a href="{% url 'home' %}" class="text-2xl font-bold">Energías Brunetti</a>
+                <a href="{% url 'home' %}" class="text-xl sm:text-2xl font-bold truncate max-w-[200px] sm:max-w-none">Energías Brunetti LTA</a>
                 <button class="md:hidden" id="menu-button">
                     <i class="fas fa-bars text-2xl"></i>
                 </button>
-                <div class="hidden md:flex space-x-8" id="menu-items">
+                <div class="hidden md:flex space-x-4 lg:space-x-8" id="menu-items">
+                    <a href="{% url 'home' %}" class="hover:text-green-400 transition-colors whitespace-nowrap">Inicio</a>
+                    <a href="{% url 'servicios' %}" class="hover:text-green-400 transition-colors whitespace-nowrap">Servicios</a>
+                    <a href="{% url 'calderas' %}" class="hover:text-green-400 transition-colors whitespace-nowrap">Calderas</a>
+                    <a href="{% url 'sobre_nosotros' %}" class="hover:text-green-400 transition-colors whitespace-nowrap">Sobre Nosotros</a>
+                    <a href="{% url 'contacto' %}" class="hover:text-green-400 transition-colors whitespace-nowrap">Contacto</a>
+                </div>
+            </div>
+            <!-- Menú móvil -->
+            <div class="md:hidden hidden" id="mobile-menu">
+                <div class="flex flex-col space-y-4 py-4">
                     <a href="{% url 'home' %}" class="hover:text-green-400 transition-colors">Inicio</a>
                     <a href="{% url 'servicios' %}" class="hover:text-green-400 transition-colors">Servicios</a>
                     <a href="{% url 'calderas' %}" class="hover:text-green-400 transition-colors">Calderas</a>
@@ -77,14 +87,14 @@
     </nav>
 
     <!-- WhatsApp Button -->
-    <a href="https://wa.me/56996952092" target="_blank" class="fixed bottom-6 right-6 z-50">
-        <div class="bg-green-400 text-blue-900 p-3 rounded-full shadow-lg hover:scale-110 transition-transform">
-            <i class="fab fa-whatsapp text-3xl"></i>
+    <a href="https://wa.me/56996952092" target="_blank" class="fixed bottom-4 sm:bottom-6 right-4 sm:right-6 z-50">
+        <div class="bg-green-400 text-blue-900 p-2 sm:p-3 rounded-full shadow-lg hover:scale-110 transition-transform">
+            <i class="fab fa-whatsapp text-2xl sm:text-3xl"></i>
         </div>
     </a>
 
     <!-- Main Content -->
-    <main class="pt-16">
+    <main class="pt-16 sm:pt-20">
         {% if messages %}
             {% for message in messages %}
                 <div class="container mx-auto px-4 mt-4">
@@ -102,42 +112,43 @@
     </main>
 
     <!-- Footer -->
-    <footer class="bg-blue-900 text-white py-12">
+    <footer class="bg-blue-900 text-white py-8 sm:py-12">
         <div class="container mx-auto px-4">
-            <div class="grid md:grid-cols-3 gap-8">
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
                 <div>
-                    <h5 class="text-xl font-bold mb-4">Energías Brunetti</h5>
-                    <p class="text-gray-300">Expertos en calderas industriales</p>
+                    <h5 class="text-lg sm:text-xl font-bold mb-3 sm:mb-4">Energías Brunetti LTA</h5>
+                    <p class="text-sm sm:text-base text-gray-300">Expertos en calderas industriales</p>
+                    <p class="text-sm sm:text-base text-gray-300 mt-2">RUT: 77.777.777-7</p>
                 </div>
                 <div>
-                    <h5 class="text-xl font-bold mb-4">Contacto</h5>
-                    <p class="text-gray-300">
+                    <h5 class="text-lg sm:text-xl font-bold mb-3 sm:mb-4">Contacto</h5>
+                    <p class="text-sm sm:text-base text-gray-300">
                         <i class="fas fa-phone mr-2"></i> +56 9 96952092<br>
-                        <i class="fas fa-envelope mr-2"></i> Info@energiasbrunetti.cl
+                        <i class="fas fa-envelope mr-2"></i> contacto@energiasbrunetti.cl
                     </p>
                 </div>
                 <div>
-                    <h5 class="text-xl font-bold mb-4">Síguenos</h5>
+                    <h5 class="text-lg sm:text-xl font-bold mb-3 sm:mb-4">Síguenos</h5>
                     <div class="flex space-x-4">
                         <a href="#" class="text-gray-300 hover:text-green-400 transition-colors">
-                            <i class="fab fa-facebook text-2xl"></i>
+                            <i class="fab fa-facebook text-xl sm:text-2xl"></i>
                         </a>
                         <a href="#" class="text-gray-300 hover:text-green-400 transition-colors">
-                            <i class="fab fa-instagram text-2xl"></i>
+                            <i class="fab fa-instagram text-xl sm:text-2xl"></i>
                         </a>
                         <a href="#" class="text-gray-300 hover:text-green-400 transition-colors">
-                            <i class="fab fa-linkedin text-2xl"></i>
+                            <i class="fab fa-linkedin text-xl sm:text-2xl"></i>
                         </a>
                     </div>
                 </div>
             </div>
-            <div class="text-center mt-8 pt-8 border-t border-gray-700">
-                <p class="text-sm">
-                    © 2025 Energías Brunetti. Todos los derechos reservados.<p class="text-xs mt-2 text-gray-400">
-                        Creada por <a href="#" class="text-green-400 hover:text-green-300 transition-colors">MoWebCri</a>
-                    </p>
+            <div class="text-center mt-6 sm:mt-8 pt-6 sm:pt-8 border-t border-gray-700">
+                <p class="text-xs sm:text-sm">
+                    © 2025 Energías Brunetti LTA. Todos los derechos reservados.
                 </p>
-                
+                <p class="text-xs mt-2 text-gray-400">
+                    Creada por <a href="#" class="text-green-400 hover:text-green-300 transition-colors">MoWebCri</a>
+                </p>
             </div>
         </div>
     </footer>
@@ -146,7 +157,7 @@
     <script>
         // Mobile menu toggle
         document.getElementById('menu-button').addEventListener('click', function() {
-            document.getElementById('menu-items').classList.toggle('hidden');
+            document.getElementById('mobile-menu').classList.toggle('hidden');
         });
     </script>
     

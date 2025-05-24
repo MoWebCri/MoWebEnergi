@@ -11,11 +11,11 @@
 
 {% block content %}
 <!-- Hero Section con animación mejorada -->
-<section class="relative bg-gradient-to-r from-blue-900 via-blue-700 to-blue-500 text-white py-32 px-6 flex items-center justify-center overflow-hidden">
-    <div class="absolute inset-0">
+<section class="relative bg-gradient-to-r from-blue-900 via-blue-700 to-blue-500 text-white flex items-center justify-center overflow-hidden mt-0 min-h-[420px]" style="top:-16px;">
+    <div class="absolute inset-0 h-full w-full">
         <img src="{% static 'img/camion.png' %}" 
              alt="Camión Energías Brunetti" 
-             class="w-full h-full object-cover opacity-20">
+             class="w-full h-full object-cover opacity-25 -mt-8">
     </div>
     <div class="absolute inset-0 bg-black opacity-40"></div>
     <div class="max-w-4xl text-center z-10" data-aos="fade-up" data-aos-duration="1000">
